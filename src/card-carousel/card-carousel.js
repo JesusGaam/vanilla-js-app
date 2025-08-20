@@ -1,33 +1,34 @@
 // CardCarousel Library - instancia independiente por carrusel, compatible con navegadores antiguos
 
-function CardCarousel(selector, backwardButton, forwardButton, cardsPerSlide, autoPlay, autoPlayInterval, onSlideChange) {
-  this.carouselContainer = document.querySelector(selector);
+function CardCarousel(options) {
+  options = options || {};
+  this.carouselContainer = document.querySelector(options.selector);
   this.carouselGridContainer = document.querySelector(".card-carousel-grid");
   this.cardList = this.carouselContainer ? this.carouselContainer.querySelectorAll('.card-carousel') : [];
-  this.backwardButton = document.querySelectorAll(backwardButton);
-  this.forwardButton = document.querySelectorAll(forwardButton);
+  this.backwardButton = document.querySelectorAll(options.backwardButton);
+  this.forwardButton = document.querySelectorAll(options.forwardButton);
 
   this.cardListSize = this.cardList.length;
   this.cardWidth = 0;
   this.slideWidth = 0;
-  this.cardsPerSlide = cardsPerSlide || { sm: "1", md: "2", lg: "3" };
+  this.cardsPerSlide = options.cardsPerSlide || { sm: 1, md: 2, lg: 3 };
   this.slideSize = Math.ceil(this.cardListSize / this.getCardsPerSlide());
   this.slidesPosition = [];
   this.currentSlide = 0;
-  this.autoPlay = autoPlay || true;
-  this.autoPlayInterval = autoPlayInterval || 3000;
+  this.autoPlay = typeof options.autoPlay === 'undefined' ? true : options.autoPlay;
+  this.autoPlayInterval = options.autoPlayInterval || 3000;
   this.autoPlayIsRunning = null;
-  this.onSlideChange = onSlideChange || function (currentSlide, slideSize) { };
+  this.onSlideChange = options.onSlideChange || function (currentSlide, slideSize) { };
 
   if (!this.cardList || this.cardListSize === 0) {
     return console.error('CardCarousel: No cards found');
   }
 
-  if (backwardButton.length === 0) {
+  if (!options.backwardButton || this.backwardButton.length === 0) {
     return console.error('CardCarousel: Backward button selector is required');
   }
 
-  if (forwardButton.length === 0) {
+  if (!options.forwardButton || this.forwardButton.length === 0) {
     return console.error('CardCarousel: Forward button selector is required');
   }
 
