@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card carousel</title>
+  <link rel="stylesheet" href="./../index.css">
+  <link rel="stylesheet" href="./card-carousel.css">
+</head>
+
+<body>
+  <h1>Card carousel</h1>
+  <div>
+    <button class="backward-button">atras</button>
+    <button class="forward-button">adelante</button>
+  </div>
+  <div class="card-carousel-container" style="min-height: 40vh;">
+    <div class="card-carousel-grid">
+      <div class="card-carousel" style="background-color: #d6f7f7;">
+        <h2>Card 1</h2>
+        <p>This is the first card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #e7d7f0;">
+        <h2>Card 2</h2>
+        <p>This is the second card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #D7F0D8;">
+        <h2>Card 3</h2>
+        <p>This is the third card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #F0D7D7;">
+        <h2>Card 4</h2>
+        <p>This is the fourth card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #F0E7D7;">
+        <h2>Card 5</h2>
+        <p>This is the fifth card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #D7E7F0;">
+        <h2>Card 6</h2>
+        <p>This is the sixth card.</p>
+      </div>
+      <div class="card-carousel" style="background-color: #F0D7E7;">
+        <h2>Card 7</h2>
+        <p>This is the seventh card.</p>
+      </div>
+
+      <script src="./card-carousel.js"></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          new CardCarousel(
+            '.card-carousel-container',
+            ".backward-button",
+            ".forward-button",
+            { sm: 1, md: 2, lg: 3 },
+            true,
+            2000,
+            function (currentSlide, slideSize) {
+              console.log('Current slide:', currentSlide, 'Slide size:', slideSize);
+            });
+        });
+      </script>
+</body>
+
+</html>
