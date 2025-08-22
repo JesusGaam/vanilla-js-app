@@ -3,7 +3,7 @@
 function CardCarousel(options) {
   options = options || {};
   this.carouselContainer = document.querySelector(options.selector);
-  this.carouselGridContainer = document.querySelector(".card-carousel-grid");
+  this.carouselGridContainer = this.carouselContainer.querySelector(".card-carousel-grid");
   this.cardList = this.carouselContainer ? this.carouselContainer.querySelectorAll('.card-carousel') : [];
   this.backwardButton = document.querySelectorAll(options.backwardButton);
   this.forwardButton = document.querySelectorAll(options.forwardButton);
@@ -231,5 +231,15 @@ CardCarousel.prototype.getCardsPerSlide = function () {
 
 // Ejemplo de uso:
 // window.addEventListener('DOMContentLoaded', function () {
-// new CardCarousel('.card-carousel-container', ".backward-button", ".forward-button", { sm: 1, md: 2, lg: 2 });
+//   new CardCarousel({
+//     selector: '.card-carousel-container',
+//     backwardButton: '.backward-button',
+//     forwardButton: '.forward-button',
+//     cardsPerSlide: { sm: 1, md: 2, lg: 3 },
+//     autoPlay: true,
+//     autoPlayInterval: 3000,
+//     onSlideChange: function (currentSlide, slideSize) {
+//       console.log('Current slide:', currentSlide, 'Slide size:', slideSize);
+//     }
+//   });
 // });
