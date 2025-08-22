@@ -1,8 +1,5 @@
 // CardCarousel Library - instancia independiente por carrusel, compatible con navegadores antiguos
 
-// Importante:
-// Falta agregar funcionalidad para cambiar a una pagina especifica del carrusel
-
 function CardCarousel(options) {
   options = options || {};
   this.carouselContainer = document.querySelector(options.selector);
