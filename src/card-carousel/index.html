@@ -45,23 +45,43 @@
         <h2>Card 7</h2>
         <p>This is the seventh card.</p>
       </div>
+    </div>
+  </div>
+  <div class="bullet-container">
+    <div class="bullet page-1 active"></div>
+    <div class="bullet page-2"></div>
+    <div class="bullet page-3"></div>
+  </div>
+  <script src="./card-carousel.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      new CardCarousel({
+        selector: '.card-carousel-container',
+        backwardButton: '.backward-button',
+        forwardButton: '.forward-button',
+        cardsPerSlide: { sm: 1, md: 2, lg: 3 },
+        autoPlay: true,
+        autoPlayInterval: 3000,
+        onSlideChange: function (currentSlide, slideSize) {
+          console.log('Current slide:', currentSlide, 'Slide size:', slideSize);
 
-      <script src="./card-carousel.js"></script>
-      <script>
-        window.addEventListener('DOMContentLoaded', function () {
-          new CardCarousel({
-            selector: '.card-carousel-container',
-            backwardButton: '.backward-button',
-            forwardButton: '.forward-button',
-            cardsPerSlide: { sm: 1, md: 2, lg: 3 },
-            autoPlay: true,
-            autoPlayInterval: 3000,
-            onSlideChange: function (currentSlide, slideSize) {
-              console.log('Current slide:', currentSlide, 'Slide size:', slideSize);
-            }
+          const bullets = document.querySelectorAll('.bullet-container .bullet');
+          bullets.forEach(bullet => bullet.classList.remove('active'));
+          const activeBullet = document.querySelector(`.bullet.page-${currentSlide + 1}`);
+          if (activeBullet) {
+            activeBullet.classList.add('active');
+          };
+        },
+        onLoaded: function (goToPage) {
+          document.querySelectorAll('.bullet-container .bullet').forEach((bullet, index) => {
+            bullet.addEventListener('click', function () {
+              goToPage(index);
+            });
           });
-        });
-      </script>
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

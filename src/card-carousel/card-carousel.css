@@ -17,3 +17,19 @@
 .card-carousel-container .card-carousel-grid .card-carousel {
   height: 100%;
 }
+
+.bullet-container {}
+
+.bullet-container .bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.bullet-container .bullet.active {
+  background-color: #333;
+}

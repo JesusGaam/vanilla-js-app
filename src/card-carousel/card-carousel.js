@@ -1,5 +1,8 @@
 // CardCarousel Library - instancia independiente por carrusel, compatible con navegadores antiguos
 
+// Importante:
+// Falta agregar funcionalidad para cambiar a una pagina especifica del carrusel
+
 function CardCarousel(options) {
   options = options || {};
   this.carouselContainer = document.querySelector(options.selector);
@@ -19,17 +22,18 @@ function CardCarousel(options) {
   this.autoPlayInterval = options.autoPlayInterval || 3000;
   this.autoPlayIsRunning = null;
   this.onSlideChange = options.onSlideChange || function (currentSlide, slideSize) { };
+  this.onLoaded = options.onLoaded || function (goToPage) { };
 
   if (!this.cardList || this.cardListSize === 0) {
     return console.error('CardCarousel: No cards found');
   }
 
   if (!options.backwardButton || this.backwardButton.length === 0) {
-    return console.error('CardCarousel: Backward button selector is required');
+    console.error('CardCarousel: Backward button not added');
   }
 
   if (!options.forwardButton || this.forwardButton.length === 0) {
-    return console.error('CardCarousel: Forward button selector is required');
+    console.error('CardCarousel: Forward button not added');
   }
 
   this.calculateCardSize();
@@ -37,6 +41,10 @@ function CardCarousel(options) {
   this.onResize();
   this.onBackwardClick();
   this.onForwardClick();
+
+  if (typeof this.onLoaded === 'function') {
+    this.onLoaded(this.goToPage.bind(this));
+  }
 }
 
 CardCarousel.prototype.calculateCardSize = function () {
@@ -176,6 +184,26 @@ CardCarousel.prototype.onForwardClick = function () {
   });
 }
 
+CardCarousel.prototype.goToPage = function (pageNumber) {
+  console.log({ pageNumber });
+
+  if (pageNumber < 0 || pageNumber >= this.slideSize) {
+    console.error('CardCarousel: Invalid page number');
+    return;
+  }
+
+  this.stopAutoPlay();
+  this.currentSlide = pageNumber;
+  this.carouselContainer.scrollTo({
+    left: this.slidesPosition[this.currentSlide],
+    behavior: 'smooth'
+  });
+
+  if (typeof this.onSlideChange === 'function') {
+    this.onSlideChange(this.currentSlide, this.slideSize);
+  }
+}
+
 CardCarousel.prototype.startAutoPlay = function () {
   var self = this;
   if (!this.autoPlay) return;
@@ -240,6 +268,20 @@ CardCarousel.prototype.getCardsPerSlide = function () {
 //     autoPlayInterval: 3000,
 //     onSlideChange: function (currentSlide, slideSize) {
 //       console.log('Current slide:', currentSlide, 'Slide size:', slideSize);
+
+//       const bullets = document.querySelectorAll('.bullet-container .bullet');
+//       bullets.forEach(bullet => bullet.classList.remove('active'));
+//       const activeBullet = document.querySelector(`.bullet.page-${currentSlide + 1}`);
+//       if (activeBullet) {
+//         activeBullet.classList.add('active');
+//       };
+//     },
+//     onLoaded: function (goToPage) {
+//       document.querySelectorAll('.bullet-container .bullet').forEach((bullet, index) => {
+//         bullet.addEventListener('click', function () {
+//           goToPage(index);
+//         });
+//       });
 //     }
 //   });
 // });
