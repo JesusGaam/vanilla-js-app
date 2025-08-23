@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal Gallery</title>
+  <link rel="stylesheet" href="./../index.css">
+  <link rel="stylesheet" href="./modal-gallery.css">
+</head>
+
+<body>
+  <h1>Modal Gallery</h1>
+  <button onclick="showGallery()"> Show gallery</button>
+  <script src="./modal-gallery.js"></script>
+  <script src="./../card-carousel/card-carousel.js"></script>
+  <script>
+    function showGallery() {
+      createModalGallery({
+        idElement: 'my-cat-gallery',
+        colorBullet: "#E8FF00",
+        images: [
+          'https://cdn2.thecatapi.com/images/kh.jpg',
+          'https://cdn2.thecatapi.com/images/a32.jpg',
+          'https://cdn2.thecatapi.com/images/a73.gif',
+          'https://cdn2.thecatapi.com/images/apf.jpg',
+          'https://cdn2.thecatapi.com/images/bkt.jpg'
+        ]
+      });
+    }
+  </script>
+</body>
+
+</html>

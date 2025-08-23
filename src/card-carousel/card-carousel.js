@@ -26,11 +26,11 @@ function CardCarousel(options) {
   }
 
   if (!options.backwardButton || this.backwardButton.length === 0) {
-    console.error('CardCarousel: Backward button not added');
+    console.log('CardCarousel: Backward button not added');
   }
 
   if (!options.forwardButton || this.forwardButton.length === 0) {
-    console.error('CardCarousel: Forward button not added');
+    console.log('CardCarousel: Forward button not added');
   }
 
   this.calculateCardSize();
@@ -97,7 +97,6 @@ CardCarousel.prototype.setGridStyles = function () {
 
   this.carouselGridContainer.style.display = 'grid';
   this.carouselGridContainer.style.gridTemplateColumns = `repeat(${this.cardListSize}, ${this.cardWidth}px)`;
-  this.carouselGridContainer.style.gridTemplateRows = 'auto';
 
   this.carouselContainer.style.overflowX = 'hidden';
 };

@@ -4,7 +4,7 @@
   "description": "A simple vanilla JavaScript application.",
   "main": "src/index.js",
   "scripts": {
-    "start": "live-server src --port=3000",
+    "start": "live-server src --port=3040",
     "build": "echo 'Build step not defined'",
     "test": "echo 'No tests defined'"
   },

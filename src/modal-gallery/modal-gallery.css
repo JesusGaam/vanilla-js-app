@@ -1,0 +1,85 @@
+.modal-gallery-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 40px);
+  height: calc(100% - 80px);
+  z-index: 9999;
+  padding: 40px 20px;
+  background-color: #000000d4;
+}
+
+.modal-gallery-container .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.modal-gallery-container .gallery-carousel {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.modal-gallery-container .gallery-carousel-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100%);
+  gap: 24px;
+}
+
+.modal-gallery-container .gallery-image {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-gallery-container .gallery-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 106px);
+  object-fit: contain;
+  object-position: center center;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.modal-gallery-container .bullets-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  grid-area: 6px;
+}
+
+.modal-gallery-container .bullets-container .bullet-button {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-gallery-container .bullets-container .bullet-button:hover {
+  background-color: #bebebe;
+}
