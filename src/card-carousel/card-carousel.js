@@ -12,7 +12,7 @@ function CardCarousel(options) {
   this.cardWidth = 0;
   this.slideWidth = 0;
   this.cardsPerSlide = options.cardsPerSlide || { sm: 1, md: 2, lg: 3 };
-  this.slideSize = Math.ceil(this.cardListSize / this.getCardsPerSlide());
+  this.slideSize = 0;
   this.slidesPosition = [];
   this.currentSlide = 0;
   this.autoPlay = typeof options.autoPlay === 'undefined' ? true : options.autoPlay;
@@ -45,6 +45,7 @@ function CardCarousel(options) {
 }
 
 CardCarousel.prototype.calculateCardSize = function () {
+  this.slideSize = Math.ceil(this.cardListSize / this.getCardsPerSlide())
   this.getSlideWidth();
   this.getCardWidth();
   this.setGridStyles();
@@ -71,7 +72,7 @@ CardCarousel.prototype.getCardWidth = function () {
     this.cardWidth = 0;
   }
 
-  if (this.getCardsPerSlide() >= this.cardListSize) {
+  if (this.getCardsPerSlide() > this.cardListSize) {
     console.error('CardCarousel: Cards per view exceeds available cards');
     this.cardWidth = 0;
   }
